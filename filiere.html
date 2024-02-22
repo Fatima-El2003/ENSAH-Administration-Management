@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulaire des modules</title>
+    <style>
+        .module-field {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function generateModuleFields() {
+            var numModules = parseInt(document.getElementById('numModules').value);
+            var moduleContainer = document.getElementById('moduleContainer');
+            moduleContainer.innerHTML = '';
+
+            for (var i = 1; i <= numModules; i++) {
+                var moduleField = document.createElement('input');
+                moduleField.type = 'text';
+                moduleField.name = 'module[]';
+                moduleField.placeholder = 'Module ' + i;
+                moduleField.className = 'module-field';
+                moduleContainer.appendChild(moduleField);
+
+                var codeField=document.createElement('input');
+                codeField.type = 'text';
+                codeField.name = 'code[]';
+                codeField.placeholder = 'code ' + i;
+                codeField.className = 'code-field';
+                moduleContainer.appendChild(codeField);
+
+                var NomDepartement=document.createElement('select');
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Formulaire des modules</h2>
+    <form action="traitement.php" method="post">
+        <label for="numModules">Nombre de modules :</label>
+        <input type="number" id="numModules" name="numModules" min="1" max="10">
+        <button type="button" onclick="generateModuleFields()">Générer les champs</button>
+
+        <div id="moduleContainer"></div>
+
+        <input type="submit" value="Envoyer">
+    </form>
+</body>
+</html>
